@@ -1,7 +1,7 @@
 import pandas as pd
 import boto3
 
-def main():
+def get_meteor_data():
     # access public bucket 'majorly meteoric'
     s3 = boto3.resource('s3').Bucket('majorly-meteoric')
 
