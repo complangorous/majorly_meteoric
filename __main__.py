@@ -3,11 +3,7 @@
 import pandas as pd
 from read_data import get_meteor_data
 
-<<<<<<< HEAD
-def main():
-    # ingest meteor data
-    df = get_meteor_data()
-=======
+
 def find_avg_mass(mass_col):
     header = '\n########################\n\n'
     # calculate number of null entries
@@ -27,7 +23,6 @@ def main():
     avg_mass = find_avg_mass(df['mass'])
 
     # determine the year with the highest number of falls
->>>>>>> avg_mass
     
 
 if __name__ == '__main__':
