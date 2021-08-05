@@ -22,7 +22,6 @@ def main():
     avg_mass = find_avg_mass(df['mass'])
 
     # determine the year with the highest number of falls
-    
 
 if __name__ == '__main__':
     main()
