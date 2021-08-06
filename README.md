@@ -21,9 +21,9 @@ Top-level script. Module is run by executing ```python __main__.py```.
 utils.py
 ```
 Contains functions that ingests dataset, and perform mass and year calculations.
-  __get_meteor_data()__ -- iteratively pulls meteor files from s3 bucket and concatenates them into singular DataFrame
-  __find_avg_mass()__ -- calculates the average mass of incidents with non-null mass values
-  __find_year_with_most_falls()__ -- calculates the year with the highest number of fall incidents for entries with non-null year values
+  _get_meteor_data()_ -- iteratively pulls meteor files from s3 bucket and concatenates them into singular DataFrame
+  _find_avg_mass()_ -- calculates the average mass of incidents with non-null mass values
+  _find_year_with_most_falls()_ -- calculates the year with the highest number of fall incidents for entries with non-null year values
 
 
 ## Acknowledgements
@@ -31,4 +31,4 @@ Contains functions that ingests dataset, and perform mass and year calculations.
 1. I would have liked to include a setup bash script that instantiated a virtual environment for execution and dependencies, but was unable to due to compatibility issues on my machine.
 2. The dataset contained one entry with a year in the future. This did not ultimately affect the answers, but it was worth noting.
 3. A utilities _class_ did not seem necessary due to the relative simplicity of the calculations.
-4. Thanks, Patrick! This was a great exercise. 
+4. Thanks, Patrick! This was a great exercise.
