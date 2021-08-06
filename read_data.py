@@ -2,6 +2,12 @@ import pandas as pd
 import boto3
 
 def get_meteor_data():
+    """
+    Ingest json files from the public s3 bucket 'majorly meteoric' as \
+a DataFrame.
+
+    Arguments:
+    """
     # access public bucket 'majorly meteoric'
     s3 = boto3.resource('s3').Bucket('majorly-meteoric')
 
