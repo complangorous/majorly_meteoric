@@ -17,14 +17,11 @@ def main():
     f = open(logf, mode='x')
     f.close()
 
-
     # ingest meteor data
     df = get_meteor_data(logf)
 
-    # caulcate and display, and retrieve the average mass
     avg_mass = find_avg_mass(df[['id', 'mass']], logf)
 
-    # determine the year with the highest number of falls
     year_with_most_falls = find_year_with_most_falls(df[['id','year']], logf)
 
     # save results

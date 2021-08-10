@@ -82,7 +82,7 @@ did the highest number of meteors fall?\n'
     # extract() function later
     year_col = pd.DataFrame(year_col.dropna())
 
-    def extract(x):
+    def extract_from_year_string(x):
         """
         Take an element of the 'year' column and, if it contains a
 valid year string, return it
@@ -105,7 +105,7 @@ valid year string, return it
 
     # use the extract() function to return the most year-like
     # substring in every year entry
-    year_col['extract_year'] = year_col['year'].apply(extract)
+    year_col['extract_year'] = year_col['year'].apply(extract_from_year_string)
 
     # identify malformed or indeterminate year data
     #
