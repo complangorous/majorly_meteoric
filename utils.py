@@ -1,5 +1,7 @@
 import pandas as pd
 import boto3
+import re
+
 
 def get_meteor_data():
     """
@@ -15,9 +17,14 @@ a DataFrame.
     # concatenate the results into a single dataframe
     df_list = []
     for file in s3.objects.all():
-        df_list.append(pd.read_json("s3://majorly-meteoric/{}".format(file.key)))
+        try:
+            df_list.append(pd.read_json("s3://majorly-meteoric/{}".format(file.key)))
+        except:
+            pass
 
-    return pd.concat(df_list, axis=0)
+    df = pd.concat(df_list, axis=0)
+    df.to_csv('data3.csv',sep=',',index=False)
+    return df
 
 
 def find_avg_mass(mass_col):
@@ -48,13 +55,37 @@ def find_year_with_most_falls(year_col):
     Determine the calendar year with the highest number of meteor falls.
 
     Arguments:
-    year_col -- pandas Series of year values, formatted as Jan 1st of \
-the fall incident's year.
+    year_col -- pandas DataFrame of id and year values
     """
     header = '\n########################\n\nQuestion 2: In what year \
 did the highest number of meteors fall?\n'
     # calculate number of null entries
     num_nulls = len(year_col) - len(year_col.dropna())
+    year_col.to_csv('year_col.csv',sep=',',index=False)
+    # date validation
+    year_col = year_col.dropna()
+
+    def extract(x):
+        """
+        Take an element of the 'year' column and, if it contains a
+valid year string, return it
+
+        Arguments:
+        x -- string or bytes object
+        """
+        pattern = r'.*([0-3][0-9]{3})'
+        if x:
+            m = re.match(pattern, str(x))
+            if m:
+                return m.group(1)
+            else:
+                return None
+        else:
+            return None
+
+    year_col['extract_year'] = year_col['year'].apply(extract)
+    year_col = year_col.loc[~pd.isnull(year_col['extract_year'])]
+
 
     # NOTE: given that the original dataset encodes years as full
     # timestamps on the same month/day (Jan 1st of that year), they are
@@ -66,7 +97,7 @@ did the highest number of meteors fall?\n'
     # are their frequency in the original column. the default behavior
     # is to sort them in descending order, making the 0 index the most
     # frequent. take the 0 index and extract its year value.
-    year_with_most_falls = year_col.value_counts().index[0][0:4]
+    year_with_most_falls = year_col['extract_year'].value_counts().index[0]
 
     # format and print results
     text = "{0}{1} null year entries were detected\nYear with most \

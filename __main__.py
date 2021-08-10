@@ -16,7 +16,7 @@ def main():
     avg_mass = find_avg_mass(df['mass'])
 
     # determine the year with the highest number of falls
-    year_with_most_falls = find_year_with_most_falls(df['year'])
+    year_with_most_falls = find_year_with_most_falls(df[['id','year']])
 
     # save results
     results = pd.DataFrame({'answer': [avg_mass, year_with_most_falls],
