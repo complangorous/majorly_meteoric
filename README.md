@@ -15,7 +15,8 @@ requirements.txt
 ```
 ___main__.py
 ```
-Top-level script. Module is run by executing ```python __main__.py```.
+Top-level script. Module is run by executing ```python __main__.py```. As of the addition of the API, it runs continuously every 24hrs
+when executed. 
 
 ```
 utils.py
@@ -25,6 +26,15 @@ Contains functions that ingests dataset, and perform mass and year calculations.
   _find_avg_mass()_ -- calculates the average mass of incidents with non-null mass values
   _find_year_with_most_falls()_ -- calculates the year with the highest number of fall incidents for entries with non-null year values
 
+
+```
+/spring_boot_api
+```
+Contains code for the Spring Boot-based API, which has two endpoints corresponding to each of the questions of
+average mass (_/get_average_mass_) and the year with the highest number of impacts (_/year_with_most_falls_). To run the API
+locally, open the spring_boot_api directory in your preferred IDE or Java environment, move the current directory
+to _spring_boot_api/complete_ and execute `./mvnw springboot:run` from the commandline. Then, navigate in your browser to
+localhost port 8080 to interact with the API. 
 
 ## Acknowledgements
 
