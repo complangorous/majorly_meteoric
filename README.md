@@ -33,7 +33,7 @@ Contains functions that ingests dataset, and perform mass and year calculations.
 Contains code for the Spring Boot-based API, which has two endpoints corresponding to each of the questions of
 average mass (_/get_average_mass_) and the year with the highest number of impacts (_/year_with_most_falls_). To run the API
 locally, open the spring_boot_api directory in your preferred IDE or Java environment, move the current directory
-to _spring_boot_api/complete_ and execute `./mvnw springboot:run` from the commandline. Then, navigate in your browser to
+to _spring_boot_api/complete_ and execute `./mvnw -e springboot:run` from the commandline. Then, navigate in your browser to
 localhost port 8080 to interact with the API. 
 
 ## Acknowledgements
